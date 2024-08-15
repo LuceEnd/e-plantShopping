@@ -46,11 +46,10 @@ const CartItem = ({ onContinueShopping , cartTotalState, addedState }) => {
 
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
-    console.log(addedToCart);
     let newAddedToCart = addedToCart;
-    //Need to do stuff here
+    delete newAddedToCart[item.name];
     setAddedToCart(newAddedToCart);
-    console.log(addedToCart);
+    setCartTotal(item.quantity);
   };
 
   // Calculate total cost based on quantity for an item
