@@ -254,7 +254,7 @@ const handleContinueShopping = (e) => {
 
 const handleAddToCart = (product) => {
     dispatch(addItem(product));
-    
+
     setCartTotal(cartTotal + 1);
     setAddedToCart((prevState) => ({
         ...prevState,
@@ -294,7 +294,7 @@ const handleAddToCart = (product) => {
                                 <div className="product-title">{plant.name}</div>
                                 <div className="product-description">{plant.description}</div>
                                 <div className="product-price">{plant.cost}</div>
-                                <button className="product-button" onClick={() => handleAddToCart(plant)}>{addedToCart [plant.name] ? 'Added to Cart' : 'Add to Cart'}</button>
+                                <button className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]}>{addedToCart [plant.name] ? 'Added to Cart' : 'Add to Cart'}</button>
                             </div>
                         ))}
                     </div>
@@ -303,7 +303,7 @@ const handleAddToCart = (product) => {
 
         </div>
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping} cartTotalState={[cartTotal, setCartTotal]}/>
+    <CartItem onContinueShopping={handleContinueShopping} cartTotalState={[cartTotal, setCartTotal]} addedState={[addedToCart, setAddedToCart]}/>
 )}
     </div>
     );
