@@ -49,7 +49,7 @@ const CartItem = ({ onContinueShopping , cartTotalState, addedState }) => {
     let newAddedToCart = addedToCart;
     delete newAddedToCart[item.name];
     setAddedToCart(newAddedToCart);
-    setCartTotal(item.quantity);
+    setCartTotal(cartTotal - item.quantity);
   };
 
   // Calculate total cost based on quantity for an item
