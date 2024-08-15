@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping , cartTotalState }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  const [cartTotal, setCartTotal] = cartTotalState;
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -27,11 +28,13 @@ const CartItem = ({ onContinueShopping }) => {
     const name = item.name;
     const quantity = item.quantity + 1;
     dispatch(updateQuantity({name, quantity}));
+    setCartTotal(cartTotal + 1);
   };
 
   const handleDecrement = (item) => {
    const name = item.name;
    const quantity = item.quantity - 1;
+   setCartTotal(cartTotal - 1);
    if(quantity > 0){
         dispatch(updateQuantity({name, quantity}));
    }
